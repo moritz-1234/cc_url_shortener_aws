@@ -1,0 +1,10 @@
+.headline {
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* color:#000; */
+}
+.pad-16{
+    padding: 16px;
+    /* color:#444; */
+    font-family: Arial, Helvetica, sans-serif;
+}

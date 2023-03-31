@@ -1,0 +1,46 @@
+<div style="display: flex">
+  <form
+    class="input-group mb-3"
+    style="max-width: 50%; margin-left: 16px"
+    novalidate
+  >
+    <input
+      type="text"
+      class="form-control"
+      placeholder="https://example.com"
+      aria-label="URL Input"
+      [formControl]="inputURL_Form"
+      [ngClass]="{
+        'is-invalid': inputURL_Form.invalid && inputURL_Form.touched
+      }"
+    />
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="submitURL()"
+    >
+      Shorten
+    </button>
+  </form>
+</div>
+<div *ngIf="shortenedURL" style="max-width: 50%; margin-left: 16px">
+  <h2 class="h2" class="mb-3">Your result:</h2>
+  <form class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="https://example.com"
+      aria-label="URL Input"
+      readonly
+      value="{{ shortenedURL }}"
+    />
+
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="copyToClipboard()"
+    >
+      Copy
+    </button>
+  </form>
+</div>
