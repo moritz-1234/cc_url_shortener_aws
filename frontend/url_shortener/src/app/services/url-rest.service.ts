@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -20,11 +20,13 @@ export class UrlRestService {
    * @param url input url
    * @returns short url key
    */
-  addShortURL(url: string): Observable<string> {
+  addShortURL(url: string) {
     return this.http.post(
-      'https://025j9tgp23.execute-api.eu-north-1.amazonaws.com/addShortURL',
+      'https://025j9tgp23.execute-api.eu-north-1.amazonaws.com/createShortUrl',
       { url: url },
-      { responseType: 'text' }
+      {
+        responseType: 'json',
+      }
     );
   }
 }

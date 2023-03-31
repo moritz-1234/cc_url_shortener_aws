@@ -16,6 +16,7 @@ export class AddUrlComponent {
       //check for a valid link (only basic regex)
       Validators.pattern(/^(http|https):\/\/.*/),
     ],
+    nonNullable: true,
   });
 
   copyToClipboard() {
@@ -26,9 +27,13 @@ export class AddUrlComponent {
     this.inputURL_Form.markAllAsTouched();
     if (this.inputURL_Form.valid) {
       console.log('valid');
-      this._urlRestService.callAPI().subscribe((data) => {
-        this.shortenedURL = data;
-      });
+      this._urlRestService
+        .addShortURL(this.inputURL_Form.value)
+        .subscribe((data) => {
+          console.log(data);
+          //@ts-ignore
+          this.shortenedURL = data;
+        });
     } else {
       console.log('invalid');
     }
