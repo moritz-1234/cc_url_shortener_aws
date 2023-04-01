@@ -1,9 +1,6 @@
-<div style="display: flex">
-  <form
-    class="input-group mb-3"
-    style="max-width: 50%; margin-left: 16px"
-    novalidate
-  >
+<div style="max-width: 50%; margin-left: 16px">
+  <label for="urlInput" class="form-label">Long URL</label>
+  <form class="input-group mb-3" novalidate>
     <input
       type="text"
       class="form-control"
@@ -13,18 +10,20 @@
       [ngClass]="{
         'is-invalid': inputURL_Form.invalid && inputURL_Form.touched
       }"
+      id="urlInput"
     />
     <button
       class="btn btn-outline-secondary"
       type="button"
       (click)="submitURL()"
+      [disabled]="inputURL_Form.invalid"
     >
       Shorten
     </button>
   </form>
 </div>
 <div *ngIf="shortenedURL" style="max-width: 50%; margin-left: 16px">
-  <h2 class="h2" class="mb-3">Your result:</h2>
+  <label for="urlOutput" class="form-label">Your Result: </label>
   <form class="input-group mb-3">
     <input
       type="text"
@@ -32,7 +31,9 @@
       placeholder="https://example.com"
       aria-label="URL Input"
       readonly
+      disabled
       value="{{ shortenedURL }}"
+      id="urlOutput"
     />
 
     <button
