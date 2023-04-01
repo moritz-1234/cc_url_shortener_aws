@@ -28,4 +28,10 @@ export class UrlRestService {
       params: { shortUrl: shortUrl },
     }) as any;
   }
+  checkIfOnline(url: string): Observable<{ available: boolean }> {
+    return this.http.get(environment.prefixUrl + '/checkIfOnline', {
+      responseType: 'json',
+      params: { url: url },
+    }) as any;
+  }
 }
