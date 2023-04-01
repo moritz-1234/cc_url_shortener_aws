@@ -8,7 +8,10 @@
       aria-label="URL Input"
       [formControl]="inputURL_Form"
       [ngClass]="{
-        'is-invalid': inputURL_Form.invalid && inputURL_Form.touched
+        'is-invalid':
+          (inputURL_Form.invalid && inputURL_Form.touched) ||
+          (!urlValid && inputURL_Form.touched),
+        'is-valid': inputURL_Form.valid && inputURL_Form.touched && urlValid
       }"
       id="urlInput"
     />
@@ -18,6 +21,12 @@
       (click)="submitURL()"
       [disabled]="inputURL_Form.invalid"
     >
+      <span
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+        *ngIf="loadingUrlValid"
+      ></span>
       Shorten
     </button>
   </form>
