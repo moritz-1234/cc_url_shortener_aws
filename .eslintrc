@@ -1,0 +1,11 @@
+{
+    "settings": {
+      "import/extensions": [".mjs", ".js"],
+      "import/resolver": {
+        "node": {
+          "extensions": [".mjs", ".js"]
+        }
+      }
+    }
+  }
+  
