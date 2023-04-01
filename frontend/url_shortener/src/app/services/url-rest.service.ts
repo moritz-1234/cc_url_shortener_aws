@@ -1,32 +1,31 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UrlRestService {
   constructor(private http: HttpClient) {}
-  callAPI(): Observable<string> {
-    return this.http.get(
-      'https://025j9tgp23.execute-api.eu-north-1.amazonaws.com/hello',
-      {
-        responseType: 'text',
-      }
-    );
-  }
   /**
    *
    * @param url input url
    * @returns short url key
    */
-  addShortURL(url: string) {
+  addShortURL(url: string): Observable<{ shortUrl: string }> {
     return this.http.post(
-      'https://025j9tgp23.execute-api.eu-north-1.amazonaws.com/createShortUrl',
+      environment.prefixUrl + '/createShortUrl',
       { url: url },
       {
         responseType: 'json',
       }
-    );
+    ) as any;
+  }
+  getLongURL(shortUrl: string): Observable<{ long_url: string }> {
+    return this.http.get(environment.prefixUrl + '/getLongUrl', {
+      responseType: 'json',
+      params: { shortUrl: shortUrl },
+    }) as any;
   }
 }
