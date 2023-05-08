@@ -1,4 +1,4 @@
-<div style="max-width: 50%; margin-left: 16px">
+<div class="wrapper">
   <label for="urlInput" class="form-label">Long URL</label>
   <form class="input-group mb-3" novalidate>
     <input
@@ -31,7 +31,7 @@
     </button>
   </form>
 </div>
-<div *ngIf="shortenedURL" style="max-width: 50%; margin-left: 16px">
+<div *ngIf="shortenedURL" class="wrapper">
   <label for="urlOutput" class="form-label">Your Result: </label>
   <form class="input-group mb-3">
     <input
